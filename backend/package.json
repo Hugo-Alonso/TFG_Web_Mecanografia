@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Hugo Alonso",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
+    "backend": "file:",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
