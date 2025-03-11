@@ -1,13 +1,48 @@
-# Node.js dependencies
+# Node.js
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
 
-# Environment variables
+# Logs
+logs/
+*.log
+*.gz
+debug/
+
+# Environment files
 .env
 .env.local
-.env.development
-.env.test
-.env.production
+.env.*.local
 
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Build files
+dist/
+build/
+out/
+.tmp/
+
+# Optional npm cache directory
+.npm/
+
+# Local project files
+*.local
+*.test.*
+*.spec.*
