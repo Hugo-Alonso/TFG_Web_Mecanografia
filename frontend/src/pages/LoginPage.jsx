@@ -1,6 +1,6 @@
 
 export const LoginPage = () => {
   return (
-    <div>LoginPage</div>
+    <div className="pt-16 text-secondary">LoginPage</div>
   )
 }

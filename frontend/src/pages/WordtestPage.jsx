@@ -1,5 +1,5 @@
 
 export const WordtestPage = () => {(
-    <div>WordtestPage</div>
+    <div className="pt-16 text-secondary">WordtestPage</div>
   )
 }

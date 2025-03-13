@@ -1,6 +1,6 @@
 
 export const CustomtestPage = () => {
   return (
-    <div>CustomtestPage</div>
+    <div className="pt-16 text-secondary">CustomtestPage</div>
   )
 }

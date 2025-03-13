@@ -8,21 +8,28 @@ import { TimetestPage } from './pages/TimetestPage';
 import { WordtestPage } from './pages/WordtestPage';
 import { CustomtestPage } from './pages/CustomtestPage';
 import { NavBar } from './components/NavBar';
+import { ProfilePage } from './pages/ProfilePage';
 
 function App() {
   return (
     <>
       <NavBar />
+      
+      <br />
 
-      <Routes>
-        <Route path="/" element={ <HomePage /> } />
-        <Route path="/signup" element={ <SignupPage /> } />
-        <Route path="/login" element={ <LoginPage /> } />
-        <Route path="/settings" element={ <SettingsPage /> } />
-        <Route path="/timetest" element={ <TimetestPage /> } />
-        <Route path="/wordtest" element={ <WordtestPage /> } />
-        <Route path="/customtest" element={ <CustomtestPage /> } />
-      </Routes>
+      <div>
+        <Routes >
+          <Route path="/" element={ <HomePage /> } />
+          <Route path="/signup" element={ <SignupPage /> } />
+          <Route path="/login" element={ <LoginPage /> } />
+          <Route path="/profile" element={ <ProfilePage /> } />
+          <Route path="/settings" element={ <SettingsPage /> } />
+          <Route path="/settings" element={ <SettingsPage /> } />
+          <Route path="/timetest" element={ <TimetestPage /> } />
+          <Route path="/wordtest" element={ <WordtestPage /> } />
+          <Route path="/customtest" element={ <CustomtestPage /> } />
+        </Routes>
+      </div>
     </>
   )
 }

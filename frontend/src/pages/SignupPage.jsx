@@ -1,6 +1,6 @@
 
 export const SignupPage = () => {
   return (
-    <div>SignupPage</div>
+    <div className="pt-16 text-secondary">SignupPage</div>
   )
 }

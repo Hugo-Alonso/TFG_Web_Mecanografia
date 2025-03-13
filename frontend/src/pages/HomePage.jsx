@@ -1,6 +1,6 @@
 
 export const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div className="pt-16 text-secondary">HomePage</div>
   )
 }

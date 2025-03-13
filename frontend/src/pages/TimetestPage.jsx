@@ -1,6 +1,6 @@
 
 export const TimetestPage = () => {
   return (
-    <div>TimetestPage</div>
+    <div className="pt-16 text-secondary">TimetestPage</div>
   )
 }
