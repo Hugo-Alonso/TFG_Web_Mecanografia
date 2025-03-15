@@ -1,17 +1,18 @@
 import express from "express";
-import dotenv from 'dotenv';
-import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
 
 import authRoutes from './routes/auth.route.js';
 import testRoutes from './routes/test.route.js'
 
+dotenv.config();
+const PORT = process.env.PORT;
+
 const app = express();
-const port = 5001;
 
 app.use('/api/auth', authRoutes);
 
 app.use('/api/save', testRoutes);
 
-app.listen(port, () => 
-    console.log(`Server running on port ${port}!`
+app.listen(PORT, () => 
+    console.log(`Server running on port ${PORT}!`
 ))
