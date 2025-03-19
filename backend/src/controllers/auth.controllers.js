@@ -1,5 +1,9 @@
-export const signup = (req, res) => {
-    res.send("signup route")
+import { generateToken } from "../lib/utils.js";
+import User from "../model/user.model.js";
+import bcrypt from "bcryptjs";
+
+export const signup = async (req, res) => {
+    res.send("signup route");
 };
 
 export const login = (req, res) => {

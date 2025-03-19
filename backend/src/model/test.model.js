@@ -29,27 +29,27 @@ const TestSchema = new Schema(
     // Configuración específica según el tipo de test
     config: { 
         duration: { 
-        type: Number, 
-        enum: [10, 20, 30, 60], 
-        required: function() { 
-            return this.testType === 'timetest'; 
-        } 
-        }, // Solo si es timeTest
+            type: Number, 
+            enum: [10, 20, 30, 60], 
+            required: function() { 
+                return this.testType === 'timetest'; 
+            } 
+        }, 
 
         wordCount: { 
-        type: Number, 
-        enum: [10, 25, 50, 100], 
-        required: function() { 
-            return this.testType === 'wordstest'; 
-        } 
-        }, // Solo si es wordsPerMinute
+            type: Number, 
+            enum: [10, 25, 50, 100], 
+            required: function() { 
+                return this.testType === 'wordstest'; 
+            } 
+        }, 
 
         customText: { 
-        type: String, 
-        required: function() { 
-            return this.testType === 'customtest'; 
+            type: String, 
+            required: function() { 
+                return this.testType === 'customtest'; 
+            } 
         } 
-        } // Solo si es custom
     },
 
     // Resultados del test
