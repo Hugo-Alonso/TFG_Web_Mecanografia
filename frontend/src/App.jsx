@@ -14,22 +14,7 @@ function App() {
   return (
     <>
       <NavBar />
-      
-      <br />
-
-      <div>
-        <Routes >
-          <Route path="/" element={ <HomePage /> } />
-          <Route path="/signup" element={ <SignupPage /> } />
-          <Route path="/login" element={ <LoginPage /> } />
-          <Route path="/profile" element={ <ProfilePage /> } />
-          <Route path="/settings" element={ <SettingsPage /> } />
-          <Route path="/settings" element={ <SettingsPage /> } />
-          <Route path="/timetest" element={ <TimetestPage /> } />
-          <Route path="/wordtest" element={ <WordtestPage /> } />
-          <Route path="/customtest" element={ <CustomtestPage /> } />
-        </Routes>
-      </div>
+    
     </>
   )
 }
