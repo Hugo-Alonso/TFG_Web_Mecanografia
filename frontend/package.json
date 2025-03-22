@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.0.14",
     "axios": "^1.8.3",
     "frontend": "file:",
+    "lucide": "^0.483.0",
     "lucide-react": "^0.471.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

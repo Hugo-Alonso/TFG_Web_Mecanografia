@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { AlignJustify, Keyboard, LogIn, Settings, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import DropdownMenu from "./DropdownMenu";
 
 export const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -35,37 +36,29 @@ export const NavBar = () => {
             className="flex items-center gap-2.5 hover:opacity-80 transition-all"
           >
             <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-              <AlignJustify className="w-5 h-5 text-primary" />
+              <AlignJustify className="w-5 h-5 text-primary"  onClick={() => setIsDropdownOpen(false)}/>
             </div>
           </button>
 
           {/* Dropdown */}
           {isDropdownOpen && (
-            <div
-              ref={dropdownRef}
-              className="absolute top-12 left-0 bg-base-100 border border-base-300 rounded-lg shadow-lg p-2.5 w-30 z-50"
-            >
-              <ul className="flex flex-col space-y-2">
-                <li>
-                  <Link 
-                    to="/timetest" 
-                    onClick={handleClick}
-                    className="hover:bg-base-200 p-3 rounded text-secondary">TimeTest</Link>
-                </li>
-                <li>
-                  <Link 
-                    to="/wordtest" 
-                    onClick={handleClick}
-                    className="hover:bg-base-200 p-3 rounded text-secondary">WordTest</Link>
-                </li>
-                <li>
-                  <Link 
-                    to="/customtest" 
-                    onClick={handleClick}
-                    className="hover:bg-base-200 p-3 rounded text-secondary">CustomTest</Link>
-                </li>
-              </ul>
-            </div>
+            <ul className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mt-2">
+            <li>
+              <Link to="/timetest" onClick={() => setIsDropdownOpen(false)}>
+                TimeTest
+              </Link>
+            </li>
+            <li>
+              <Link to="/wordtest" onClick={() => setIsDropdownOpen(false)}>
+                WordTest
+              </Link>
+            </li>
+            <li>
+              <Link to="/customtest" onClick={() => setIsDropdownOpen(false)}>
+                CustomTest
+              </Link>
+            </li>
+          </ul>
           )}
         </div>
 

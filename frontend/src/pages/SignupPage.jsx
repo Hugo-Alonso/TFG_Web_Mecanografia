@@ -1,16 +1,22 @@
 import { useState } from "react";
-import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
+import { Eye } from "lucide-react";
+import { EyeOff } from "lucide-react";
+import { Lock } from "lucide-react";
+import { Mail } from "lucide-react";
+import { User } from "lucide-react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useAuthStore } from "../store/useAuthStore.js";
 
 export const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-
   const [form, setForm] = useState({
-    fullName: "",
+    username: "",
     email: "",
     password: "",
   });
+
+  const { isSigningUp, signup } = useAuthStore();
 
   const handleChange = (e) => {
     setForm({
@@ -21,7 +27,7 @@ export const SignupPage = () => {
 
   const validateForm = () => {
     debugger;
-    if (!form.fullName.trim()) return toast.error("El nombre es obligatorio");
+    if (!form.username.trim()) return toast.error("El nombre es obligatorio");
     if (!form.email.trim()) return toast.error("El email es obligatorio");
     if (!/\S+@\S+\.\S+/.test(form.email)) return toast.error("Formato de email incorrecto");
     if (!form.password) return toast.error("La contraseña es obligatoria");
@@ -37,6 +43,8 @@ export const SignupPage = () => {
 
     if (success) {
       console.log("Form submitted:", form);
+      debugger;
+      signup(form);
     }
   };
 
@@ -56,21 +64,21 @@ export const SignupPage = () => {
           </div>
 
           {/* FORM */}
-          <form className="space-y-6 " onSubmit={handleSubmit}>
+          <form className="space-y-6 x" onSubmit={handleSubmit}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Nombre</span>
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="size-5 text-base-content/40" />
+                  <User className="w-5 h-5 text-base-content/40" />
                 </div>
                 <input
                   type="text"
                   className="input input-bordered w-full pl-10"
                   placeholder="John Doe"
-                  name="fullName"
-                  value={form.fullName}
+                  name="username"
+                  value={form.username}
                   onChange={handleChange}
                 />
               </div>
@@ -81,9 +89,13 @@ export const SignupPage = () => {
                 <span className="label-text font-medium">Email</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  disabled  
+                >
                   <Mail className="size-5 text-base-content/40" />
-                </div>
+                </button>
                 <input
                   type="email"
                   className="input input-bordered w-full pl-10"
