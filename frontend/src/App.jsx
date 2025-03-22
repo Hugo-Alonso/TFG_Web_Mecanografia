@@ -9,6 +9,8 @@ import { NavBar } from './components/NavBar';
 import { ProfilePage } from './pages/ProfilePage';
 import { WordtestPage } from './pages/WordtestPage';
 
+import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <>
@@ -32,6 +34,8 @@ function App() {
           <Route path="/wordtest" element={ <WordtestPage /> } />
           <Route path="/customtest" element={ <CustomtestPage /> } />
         </Routes>
+
+        <Toaster />
       </div>
     </>
   )

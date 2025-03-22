@@ -82,15 +82,12 @@ export const NavBar = () => {
         <div className="flex-1 flex justify-end space-x-3">
           <Link to="/settings" className="btn btn-sm flex items-center gap-2">
             <Settings className="w-5 h-5 text-primary" />
-            <span className="hidden md:inline">Settings</span>
           </Link>
           <Link to="/profile" className="btn btn-sm flex items-center gap-2">
             <User className="w-5 h-5 text-primary" />
-            <span className="hidden md:inline">Profile</span>
           </Link>
-          <Link to="/login" className="btn btn-sm flex items-center gap-2">
+          <Link to="/signup" className="btn btn-sm flex items-center gap-2">
             <LogIn className="w-5 h-5 text-primary" />
-            <span className="hidden md:inline">LogIn</span>
           </Link>
         </div>
       </div>
