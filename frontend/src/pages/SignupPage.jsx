@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Eye } from "lucide-react";
+import { Eye, LoaderCircle } from "lucide-react";
 import { EyeOff } from "lucide-react";
 import { Lock } from "lucide-react";
-import { Mail } from "lucide-react";
+import { Mail } from 'lucide-react';
 import { User } from "lucide-react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -11,7 +11,7 @@ import { useAuthStore } from "../store/useAuthStore.js";
 export const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
-    username: "",
+    username: "", 
     email: "",
     password: "",
   });
@@ -83,7 +83,7 @@ export const SignupPage = () => {
                 />
               </div>
             </div>
-
+            
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Email</span>
@@ -137,8 +137,15 @@ export const SignupPage = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn btn-primary w-full">
-              Crear Cuenta
+            <button type="submit" className="btn btn-primary w-full" disabled={isSigningUp}>
+              {isSigningUp ? (
+                <>
+                  <LoaderCircle className="size-5 animate-spin" />
+                  Cargando...
+                </>
+              ) : (
+                "Crear Cuenta"
+              )}
             </button>
           </form>
 
