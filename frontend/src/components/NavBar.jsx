@@ -6,6 +6,7 @@ import DropdownMenu from "./DropdownMenu";
 export const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const handleClick = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -13,7 +14,11 @@ export const NavBar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if ( dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if ( dropdownRef.current && 
+        !dropdownRef.current.contains(event.target) &&
+        buttonRef.current && 
+        !buttonRef.current.contains(event.target) 
+      ) {
         setIsDropdownOpen(false);
       }
     };
@@ -32,29 +37,32 @@ export const NavBar = () => {
         {/* Left Section */}
         <div className="flex-1 flex relative">
           <button
+            ref={buttonRef}
             onClick={handleClick}
             className="flex items-center gap-2.5 hover:opacity-80 transition-all"
           >
             <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-              <AlignJustify className="w-5 h-5 text-primary"  onClick={() => setIsDropdownOpen(false)}/>
+              <AlignJustify className="w-5 h-5 text-primary"/>
             </div>
           </button>
 
           {/* Dropdown */}
           {isDropdownOpen && (
-            <ul className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mt-2">
+            <ul 
+                ref={dropdownRef}
+                className="absolute left-0 top-full dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 z-50 mt-2">
             <li>
-              <Link to="/timetest" onClick={() => setIsDropdownOpen(false)}>
+              <Link to="/timetest" className="text-secondary" onClick={() => setIsDropdownOpen(false)}>
                 TimeTest
               </Link>
             </li>
             <li>
-              <Link to="/wordtest" onClick={() => setIsDropdownOpen(false)}>
+              <Link to="/wordtest" className="text-secondary" onClick={() => setIsDropdownOpen(false)}>
                 WordTest
               </Link>
             </li>
             <li>
-              <Link to="/customtest" onClick={() => setIsDropdownOpen(false)}>
+              <Link to="/customtest" className="text-secondary" onClick={() => setIsDropdownOpen(false)}>
                 CustomTest
               </Link>
             </li>
