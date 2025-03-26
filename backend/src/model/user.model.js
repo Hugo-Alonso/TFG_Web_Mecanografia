@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
+    // Email del usuario (Identificador único)
     email: {
       type: String,
       required: true,
@@ -11,6 +12,7 @@ const userSchema = new Schema(
       trim: true, 
       lowercase: true, 
     },
+    // Nombre usuario aplicación
     username: {
       type: String,
       required: true,
