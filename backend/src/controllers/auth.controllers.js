@@ -6,19 +6,17 @@ export const signup = async (req, res) => {
     // Collect data from the request 
     const { username, email, password } = req.body;
 
-    console.log(req.body); 
-
     try {
         if (!username || !email || !password) {
-            return res.status(400).json({ message: "All fields are required"});
+            return res.status(400).json({ message: "Todos los campos son necesarios"});
         }
 
         const emailExists = await User.findOne({email});
 
-        if (emailExists) return res.status(400).json({ message: "Email already exists"});
+        if (emailExists) return res.status(400).json({ message: "Email ya utilizado"});
 
         if (password.length < 6) {
-            return res.status(400).json({ message: "Password must be at least 6 characters"});
+            return res.status(400).json({ message: "La contraseña debe tener almenos 6 caracteres"});
         }
 
         // Hash Password before store it at the DB
@@ -42,17 +40,48 @@ export const signup = async (req, res) => {
                 username: newUser.username,
             });
         } else {
-            res.status(400).json({ message: "Invalid user data" });
+            res.status(400).json({ message: "Datos de usuario invalidos" });
         }
 
     } catch (error) {
         console.log("Error in signup controller", error.message);
-        res.status(500).json({ message: "Internal Server Error"});
+        res.status(500).json({ message: "Error interno del servidor"});
     }
 };
 
-export const login = (req, res) => {
-    res.send("login route")
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        if (!email || !password) {
+            return res.status(400).json({ message: "Todos los campos son necesarios"});
+        }
+
+        // Recover User from database
+        const user = await User.findOne({email});
+
+        if (!user) {
+            return res.status(400).json({ mesage: "Email no válido" })
+        }
+
+        const correctPassword = await bcrypt.compare(password, user.password);
+
+        if (!correctPassword) {
+            return res.status(400).json({ mesage: "Contraseña incorrecta" })
+        } 
+
+        generateToken(user._id, res)
+
+        res.status(200).json({
+            _id: newUser._id,
+            email: newUser.email,
+            username: newUser.username,
+        })
+
+    } catch (error) {
+        console.log("Error in login controller", error.message);
+        res.status(500).json({ message: "Error interno del servidor"});
+    }
 };
 
 export const logout = (req, res) => {
