@@ -37,7 +37,7 @@ export const SignupPage = () => {
     
     const success = validateForm();
 
-    if (success) {
+    if (success == true) {
       console.log("Form submitted:", form);
       debugger;
       signup(form);

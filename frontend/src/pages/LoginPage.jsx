@@ -32,12 +32,12 @@ export const LoginPage = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    debugger;
     const success = validateForm();
 
-    if (success) {
+    if (success == true) {
       console.log("Form submitted:", form);
-      debugger;
+      login(form);
     }
   };
 
@@ -107,7 +107,7 @@ export const LoginPage = () => {
                 Cargando...
               </>
             ) : (
-              "Iniciar sesión"
+              "Iniciar sesión"  
             )}
           </button>
         </form>
