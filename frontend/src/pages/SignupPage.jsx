@@ -53,10 +53,9 @@ export const SignupPage = () => {
    <div className="flex flex-col justify-center items-center sm:p-8">
       {/* Left side */}
         <div className="w-full max-w-md space-y-8">
-          {/* LOGO */}
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group mt-16">
-              <h1 className="text-2xl font-bold mt-2">Crear Cuenta</h1>
+              <h1 className="text-2xl font-bold mt-2">Únete hoy</h1>
               <p className="text-base-content/60">
                 Empieza con tu cuenta gratis
               </p>
@@ -151,7 +150,7 @@ export const SignupPage = () => {
 
           <div className="text-center">
             <p className="text-base-content/60">
-              Ya tienes una cuenta?{" "}
+              ¿Ya tienes cuenta?{" "}
               <Link to="/login" className="link link-primary">
                 Inicia sesión
               </Link>
