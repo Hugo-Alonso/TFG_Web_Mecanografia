@@ -1,16 +1,19 @@
 import { useState, useRef, useEffect } from "react";
-import { AlignJustify, Keyboard, LogIn, Settings, User } from "lucide-react";
+import { AlignJustify, Keyboard, LogIn, LogOut, Settings, User } from "lucide-react";
 import { Link } from "react-router-dom";
-import DropdownMenu from "./DropdownMenu";
+import { useAuthStore } from "../store/useAuthStore";
 
 export const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { authUser, logout } = useAuthStore();
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
 
   const handleClick = () => {
     setIsDropdownOpen((prev) => !prev);
   };
+
+  console.log(authUser);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -36,16 +39,18 @@ export const NavBar = () => {
 
         {/* Left Section */}
         <div className="flex-1 flex relative">
-          <button
-            ref={buttonRef}
-            onClick={handleClick}
-            className="flex items-center gap-2.5 hover:opacity-80 transition-all"
-          >
-            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-              <AlignJustify className="w-5 h-5 text-primary"/>
-            </div>
-          </button>
-
+          { authUser && ( 
+            <button
+              ref={buttonRef}
+              onClick={handleClick}
+              className="flex items-center gap-2.5 hover:opacity-80 transition-all"
+            >
+              <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                <AlignJustify className="w-5 h-5 text-primary"/>
+              </div>
+            </button>
+          )}
+          
           {/* Dropdown */}
           {isDropdownOpen && (
             <ul 
@@ -84,12 +89,20 @@ export const NavBar = () => {
           <Link to="/settings" className="btn btn-sm flex items-center gap-2">
             <Settings className="w-5 h-5 text-primary" />
           </Link>
-          <Link to="/profile" className="btn btn-sm flex items-center gap-2">
-            <User className="w-5 h-5 text-primary" />
-          </Link>
+          { !authUser ? 
           <Link to="/signup" className="btn btn-sm flex items-center gap-2">
             <LogIn className="w-5 h-5 text-primary" />
           </Link>
+          :
+          <>
+            <Link to="/profile" className="btn btn-sm flex items-center gap-2">
+              <User className="w-5 h-5 text-primary" />
+            </Link>
+            <Link className="btn btn-sm flex items-center gap-2" onClick={logout}>
+              <LogOut className="w-5 h-5 text-primary" />
+            </Link>
+          </>
+          }
         </div>
       </div>
     </header>
