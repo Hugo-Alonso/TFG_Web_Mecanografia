@@ -13,8 +13,6 @@ export const NavBar = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  console.log(authUser);
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if ( dropdownRef.current && 
