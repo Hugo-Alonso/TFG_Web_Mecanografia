@@ -8,10 +8,29 @@ import { CustomtestPage } from './pages/CustomtestPage';
 import { NavBar } from './components/NavBar';
 import { ProfilePage } from './pages/ProfilePage';
 import { WordtestPage } from './pages/WordtestPage';
+import { useAuthStore } from './store/useAuthStore';
+import { useEffect } from 'react';
+import { Loader } from 'lucide-react';
 
 import { Toaster } from "react-hot-toast";
 
 function App() {
+
+  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+  
+  // console.log(authUser);
+
+  if (isCheckingAuth && !authUser) 
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader className="size-10 animate-spin"/>
+      </div>
+    ) 
+
   return (
     <>
       <NavBar />
@@ -21,18 +40,18 @@ function App() {
       <div>
         <Routes >
           {/* Auth Routes */}
-          <Route path="/" element={ <HomePage /> } />
-          <Route path="/signup" element={ <SignupPage /> } />
-          <Route path="/login" element={ <LoginPage /> } />
+          <Route path="/" element={ authUser ? <HomePage /> : <Navigate to="/signup"/> } />
+          <Route path="/signup" element={ !authUser ? <SignupPage /> : <Navigate to="/" /> } />
+          <Route path="/login" element={  !authUser ? <LoginPage /> : <Navigate to="/" /> } />
 
           {/* User Routes */}
-          <Route path="/profile" element={ <ProfilePage /> } />
+          <Route path="/profile" element={ authUser ? <ProfilePage /> : <Navigate to="/signup"/> } />
           <Route path="/settings" element={ <SettingsPage /> } />
         
           {/* Tests Routes */}
-          <Route path="/timetest" element={ <TimetestPage /> } />
-          <Route path="/wordtest" element={ <WordtestPage /> } />
-          <Route path="/customtest" element={ <CustomtestPage /> } />
+          <Route path="/timetest" element={ authUser ? <TimetestPage /> : <Navigate to="/signup"/> } />
+          <Route path="/wordtest" element={ authUser ? <WordtestPage /> : <Navigate to="/signup"/> } />
+          <Route path="/customtest" element={ authUser ? <CustomtestPage /> : <Navigate to="/signup"/> } />
         </Routes>
 
         <Toaster />

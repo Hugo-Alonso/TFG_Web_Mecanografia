@@ -60,7 +60,7 @@ export const SignupPage = () => {
           <form className="space-y-6 x" onSubmit={handleSubmit}>
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-medium">Email</span>
+                <span className="label-text font-medium">Usuario</span>
               </label>
               <div className="input input-bordered items-center w-full gap-3 rounded-lg px-4 py-2 focus-within:ring-0">
                 <User className="size-5 text-base-content/40"/>
